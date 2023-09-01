@@ -8,12 +8,16 @@
 #define BMP_PALETTE_COLOURS 256
 /**************************************/
 
-struct BmpCtx_t {
-	int Width, Height;
-	struct BGRA8_t *ColPal;
-	union {
-		       uint8_t *PxIdx; //! Palettized
-		struct BGRA8_t *PxBGR; //! Direct
+struct BmpCtx_t 
+{
+	int Width;
+    int Height;
+	struct RGBA8_t* ColPal;
+    
+	union 
+    {
+		       uint8_t *PxIdx;  //! Palettized
+		struct RGBA8_t *PxRGB;  //! Direct
 	};
 };
 

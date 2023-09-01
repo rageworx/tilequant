@@ -11,23 +11,23 @@
 //!  -Passing TilePxOutput != NULL will store the output image there,
 //!   using TilePalettes as a reference.
 //!  -DiffusionBuffer[] needs to be (Image->Width+2)*2 elements in size.
-struct BGRAf_t DitherImage(
-	const struct BmpCtx_t *Image,
-	const struct BGRA8_t *BitRange,
-	struct BGRAf_t *RawPxOutput,
+struct RGBAf_t DitherImage(
+	const struct BmpCtx_t*  Image,
+	const struct RGBA8_t*   BitRange,
+	struct RGBAf_t*         RawPxOutput,
 
-	int TileW,
-	int TileH,
-	int MaxTilePals,
-	int MaxPalSize,
-	int PalUnused,
-	const int32_t *TilePalIndices,
-	const struct BGRAf_t *TilePalettes,
-	uint8_t *TilePxOutput,
+	int                     TileW,
+	int                     TileH,
+	int                     MaxTilePals,
+	int                     MaxPalSize,
+	int                     PalUnused,
+	const int32_t*          TilePalIndices,
+	const struct RGBAf_t*   TilePalettes,
+	uint8_t*                TilePxOutput,
 
-	int   DitherType,
-	float DitherLevel,
-	struct BGRAf_t *DiffusionBuffer
+	int                     DitherType,
+	float                   DitherLevel,
+	struct RGBAf_t*         DiffusionBuffer
 );
 
 /**************************************/

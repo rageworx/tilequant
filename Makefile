@@ -33,11 +33,11 @@ endif
 
 ${OUT_BIN}: ${CFILES}
 	@echo "Generating $@ ..."
-	@$(CC) -lm -O2 -Wall -Wextra $^ -o $@
+	@$(CC) -lm -g -Wall -Wextra $^ -o $@
 
 solink: ${CFILES}
 	@echo "Linking daynic archive $@ ... "
-	@$(CC) -shared -o ${OUT_DIR}/$(OUT_SO)$(OUT_SO_EXT) -lm -O2 -Wall -fPIC -Wextra $(CFILES) -DDECLSPEC="$(DDECLSPEC)"
+	@$(CC) -shared -o ${OUT_DIR}/$(OUT_SO)$(OUT_SO_EXT) -lm -g -Wall -fPIC -Wextra $(CFILES) -DDECLSPEC="$(DDECLSPEC)"
 
 clean:
 	@rm -rf ${OUT_DIR}/*

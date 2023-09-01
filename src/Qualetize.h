@@ -20,21 +20,21 @@
 //! Handle conversion of image, return RMS error
 //! NOTE:
 //!  * With ReplaceImage != 0, {Image->ColMap,Image->PxIdx} (or
-//!    Image->PxBGR) will be free()'d and replaced with {PxData,Palette}.
-struct BGRAf_t Qualetize(
-	struct BmpCtx_t *Image,
-	struct TilesData_t *TilesData,
-	uint8_t *PxData,
-	struct BGRAf_t *Palette,
-	int   MaxTilePals,
-	int   MaxPalSize,
-	int   PalUnused,
-	int   nTileClusterPasses,
-	int   nColourClusterPasses,
-	const struct BGRA8_t *BitRange,
-	int   DitherType,
-	float DitherLevel,
-	int   ReplaceImage
+//!    Image->PxRGB) will be free()'d and replaced with {PxData,Palette}.
+struct RGBAf_t Qualetize(
+	struct BmpCtx_t*        Image,
+	struct TilesData_t*     TilesData,
+	uint8_t*                PxData,
+	struct RGBAf_t*         Palette,
+	int                     MaxTilePals,
+	int                     MaxPalSize,
+	int                     PalUnused,
+	int                     nTileClusterPasses,
+	int                     nColourClusterPasses,
+	const struct RGBA8_t*   BitRange,
+	int                     DitherType,
+	float                   DitherLevel,
+	int                     ReplaceImage
 );
 
 /**************************************/
