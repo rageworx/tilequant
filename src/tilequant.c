@@ -61,7 +61,7 @@ int main(int argc, const char *argv[]) {
 	int     nColourClusterPasses = 0;
 	int     TileW = 8;
 	int     TileH = 8;
-	struct  RGBA8_t BitRange = {.b = 0x1F, .g = 0x1F, .r = 0x1F, .a = 0x01};
+	struct  RGBA8_t BitRange = {.r = 0x1F, .g = 0x1F, .b = 0x1F, .a = 0x01};
 	int     DitherMode  = DITHER_FLOYDSTEINBERG;
 	float   DitherLevel = 1.0f; 
     {

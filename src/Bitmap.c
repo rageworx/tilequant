@@ -133,9 +133,9 @@ int BmpCtx_FromFile(struct BmpCtx_t *Ctx, const char *Filename) {
 				fread(&Col, 1, 3, File);
 
 				//! Store RGBAA
-				PxRGB[i].r = Col.b;
+				PxRGB[i].r = Col.r;
 				PxRGB[i].g = Col.g;
-				PxRGB[i].b = Col.r;
+				PxRGB[i].b = Col.b;
 				PxRGB[i].a = 255;
 			}
 		} break;

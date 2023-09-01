@@ -119,7 +119,9 @@ void QuantCluster_Quantize(struct QuantCluster_t *Clusters, int nCluster, const 
 	QuantCluster_ClearTraining(&Clusters[0]);
 	
     for(i=0;i<nData;i++) 
+    {
         QuantCluster_Train(&Clusters[0], &Data[i]);
+    }
     
 	if(Clusters[0].DistWeight == 0.0f) 
         return; //! Global convergence already reached (ie. single item)
