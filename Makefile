@@ -1,8 +1,21 @@
-CFILES := Bitmap.c Quantize.c Dither.c Qualetize.c Tiles.c tilequant.c
+SRC_DIR = src
+CFILES   = ${SRC_DIR}/Bitmap.c 
+CFILES += ${SRC_DIR}/Quantize.c 
+CFILES += ${SRC_DIR}/Dither.c 
+CFILES += ${SRC_DIR}/Qualetize.c 
+CFILES += ${SRC_DIR}/Tiles.c 
+CFILES += ${SRC_DIR}/tilequant.c
+OUT_DIR = bin
+OUT_SO  = tilequant
+OUT_BIN = ${OUT_DIR}/${OUT_SO}
 
-all:
-	mkdir -p release
-	$(CC) -lm -O2 -Wall -Wextra $(CFILES) -o release/tilequant
+.PHONY: prepare dll clean
+
+all: prepare ${OUT_BIN}
+dynamic: prepare solink
+
+prepare:
+	@mkdir -p ${OUT_DIR}
 
 UNAME := $(shell uname)
 
@@ -13,15 +26,18 @@ ifeq ($(UNAME), Darwin)
 IS_UNIX = true
 endif
 ifdef IS_UNIX
-TARGET = "libtilequant.so"
+OUT_SO_EXT = ".so"
 else
-TARGET = "libtilequant.dll"
+OUT_SO_EXIT = ".dll"
 endif
 
-dll:
-	mkdir -p release
-	$(CC) -shared -o release/$(TARGET) -lm -O2 -Wall -fPIC -Wextra $(CFILES) -DDECLSPEC="$(DDECLSPEC)"
+${OUT_BIN}: ${CFILES}
+	@echo "Generating $@ ..."
+	@$(CC) -lm -O2 -Wall -Wextra $^ -o $@
 
-.PHONY: clean
+solink: ${CFILES}
+	@echo "Linking daynic archive $@ ... "
+	@$(CC) -shared -o ${OUT_DIR}/$(OUT_SO)$(OUT_SO_EXT) -lm -O2 -Wall -fPIC -Wextra $(CFILES) -DDECLSPEC="$(DDECLSPEC)"
+
 clean:
-	rm -rf release
+	@rm -rf ${OUT_DIR}/*
